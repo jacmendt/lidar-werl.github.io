@@ -1,0 +1,14 @@
+# do not add ide files
+.idea/
+
+# javascript
+process/node_modules/
+process/package-lock.json
+process/dist/
+process/
+
+# jekyll
+_site
+.sass-cache
+.jekyll-metadata
+Gemfile.lock

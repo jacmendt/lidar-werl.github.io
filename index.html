@@ -1,0 +1,30 @@
+---
+layout: default
+---
+<div id="map"></div>
+<script type="text/javascript">
+	const { MapboxLayer, PointCloudLayer } = deck;
+	//REPLACE WITH YOUR MAPBOX ACCESS TOKEN
+	mapboxgl.accessToken = 'pk.eyJ1IjoiamFjbWVuZHQiLCJhIjoiY2p3MjZiODJnMDlobTN6b2gxcTBreGwxdSJ9.TTMepSd8ZklKt4MbZYrr6Q';
+	const map = new mapboxgl.Map({
+		container: 'map',
+		style: 'mapbox://styles/mapbox/satellite-v9',
+		center: [7.92227365218605, 51.57858616716621],
+		zoom: 17.367205369310124,
+		bearing: -34.40,
+		pitch: 60
+	});
+
+	map.on('style.load', () => {
+		map.addLayer(new MapboxLayer({
+			id: 'deckgl-PointCloudLayer',
+			type: PointCloudLayer,
+			data: './assets/dom-werl-color.json',
+			getPosition: d => [d[0], d[1], d[2]],
+			getColor: d => [d[3], d[4], d[5]],
+			sizeUnits: 'meters',
+			pointSize: 0.4,
+			opacity: 1
+		}));
+	});
+</script>
